@@ -1,0 +1,7 @@
+.chat {
+  box-sizing: border-box;
+  height: 100px;
+  width: 30%;
+  background-color: green;
+  float: left;
+}

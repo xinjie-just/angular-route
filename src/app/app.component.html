@@ -1,0 +1,52 @@
+<!--The whole content below can be removed with the new code.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!!
+  </h1>
+  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=" />
+</div>
+<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
+  </li>
+</ul>
+
+<!--
+-- 这里使用 "/" 可以指定导航到根路由和子路由
+-- 路由是一个数组，而不是一个字符串，因为我们在路由的时候可以传递一些参数
+-->
+<a [routerLink]="['/home']" title="主页">主页</a>
+
+<!--
+-- 可以通过参数查询时，传递数据
+-- 使用 queryParams 指令，它接受一个对象，可设置为 {id: 1} 或 {id: 1, name: 'product1'}
+-->
+<!--<a [routerLink]="['/product']" [queryParams]="{id: 2, name: 'product2'}" title="商品详情">商品详情</a>-->
+<!-- 设置为 {id: 2, name: 'product2'} 这种多属性时，后面的参数显示不知怎么处理 -->
+<!--<a [routerLink]="['/product']" [queryParams]="{id: 2}" title="商品详情">商品详情</a>-->
+
+<!-- 下面是通过 url 传递路由参数时，组件模板的写法，2 对应 id -->
+<a [routerLink]="['/product', 2]" title="商品详情">商品详情</a>
+
+<!--
+-- angular 的数据绑定第三种方式
+-- 事件绑定，如 (click)
+-- 另外两种：类绑定[class.className], 数值绑定 {{value}}
+-->
+<input type="button" value="商品详情" (click)="toProductDetails()">
+
+<!--primary定义在任何路由下，点击聊天时，其他路由都跳转到主路由-->
+<a [routerLink]="[{outlets: {primary: 'home', aux: 'chat'}}]" title="开始聊天">开始聊天</a>
+<a [routerLink]="[{outlets: {aux: null}}]" title="结束聊天">结束聊天</a>
+
+<router-outlet></router-outlet>
+
+<!--辅助路由第一步：添加一个包含 name 属性的插座-->
+<router-outlet name="aux"></router-outlet>
